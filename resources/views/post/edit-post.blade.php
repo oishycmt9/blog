@@ -3,6 +3,12 @@
         @csrf
 
         <input type="hidden" name="id" value="{{$post->id}}">
+         <!-- User ID -->
+         <div>
+            <x-text-input id="user_id" class="block mt-1 w-full" type="hidden" name="user_id" :value="auth()->user()->id" required autofocus autocomplete="user_id" />
+            <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
+        </div>
+
         <!-- Title -->
         <div>
             <x-input-label for="title" :value="__('Title')" />

@@ -3,6 +3,11 @@
         @csrf
         {{auth()->user()->role_name}}
 
+        <!-- User ID -->
+        <div>
+            <x-text-input id="user_id" class="block mt-1 w-full" type="hidden" name="user_id" :value="auth()->user()->id" required autofocus autocomplete="user_id" />
+            <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
+        </div>
         <!-- Title -->
         <div>
             <x-input-label for="title" :value="__('Title')" />
@@ -43,8 +48,8 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="">
-                {{ __('Already registered?') }}
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('posts.show') }}">
+                {{ __('view') }}
             </a>
 
             <x-primary-button class="ml-4">

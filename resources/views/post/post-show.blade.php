@@ -22,6 +22,7 @@
                         <thead>
                           <tr>
                             <th>ID</th>
+                            <th>user id</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Image</th>
@@ -34,6 +35,7 @@
                             @foreach ($posts as $post)
                             <tr>
                                 <td>{{$n++}}</td>
+                                <td>{{$post->user_id}}</td>
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->description}}</td>
                                 <td>

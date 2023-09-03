@@ -16,6 +16,7 @@ class PostController extends Controller
     public function store(Request $request){
 
         $post = new Post();
+        $post->user_id = $request->user_id;
         $post->title = $request->title;
         $post->description = $request->description;
         if($request->file('image')!=null)
@@ -36,7 +37,9 @@ class PostController extends Controller
 
     public function show(){
         $posts = Post::all();
+
         return view('post.post-show',['posts'=>$posts]);
+
     }
 
     public function edit($id){

@@ -46,7 +46,6 @@
                                     <a href="{{route('posts.edit',['id'=>$post->id])}}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> </a>
                                     <a href="{{route('posts.destroy',['id'=>$post->id])}}" class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete this post?')"> <i class="fa fa-trash"></i> </a>
                                 </td>
-
                               </tr>
                             @endforeach
                         </tbody>

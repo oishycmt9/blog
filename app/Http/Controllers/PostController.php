@@ -37,9 +37,11 @@ class PostController extends Controller
 
     public function show(){
         $posts = Post::all();
-
-        return view('post.post-show',['posts'=>$posts]);
-
+        $role = auth()->user()->role_name;
+        switch($role){
+            case 'admin': return view('post.post-show',['posts'=>$posts]);
+            default : return view('auth.login');
+        }
     }
 
     public function edit($id){

@@ -23,6 +23,9 @@
                           <tr>
                             <th>ID</th>
                             <th>user id</th>
+                            @if (auth()->user()->id=='admin' )
+                            <th>Status</th>
+                            @endif
                             <th>Title</th>
                             <th>Description</th>
                             <th>Image</th>
@@ -36,6 +39,9 @@
                             <tr>
                                 <td>{{$n++}}</td>
                                 <td>{{$post->user_id}}</td>
+                                @if (auth()->user()->role_name=='admin')
+                                <td>{{$post->status}}</td>
+                                @endif
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->description}}</td>
                                 <td>

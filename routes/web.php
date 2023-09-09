@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/posts', [PostController::class, 'create'])->middleware(['auth'])->name('posts');
 Route::post('/posts', [PostController::class, 'store'])->middleware(['auth'])->name('posts.store');
-Route::get('/posts/view', [PostController::class, 'show'])->middleware(['auth','role:user'])->name('posts.show');
+Route::get('/posts/view', [PostController::class, 'show'])->middleware(['auth','role:admin'])->name('posts.show');
 Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->middleware(['auth','role:admin'])->name('posts.edit');
 Route::post('/posts/update', [PostController::class, 'update'])->middleware(['auth','role:admin'])->name('posts.update');
 Route::get('/posts/destroy/{id}', [PostController::class, 'delete'])->middleware(['auth','role:admin'])->name('posts.destroy');

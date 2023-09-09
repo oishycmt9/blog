@@ -62,6 +62,9 @@ class PostController extends Controller
     public function update(Request $request){
 
         $post = Post::find($request->id);
+        if(!$this->authorize('update', $post)){
+            abort(403);
+        }
         $post->status = $request->status;
         $post->title = $request->title;
         $post->description = $request->description;

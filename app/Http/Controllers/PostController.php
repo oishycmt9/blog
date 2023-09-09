@@ -37,11 +37,13 @@ class PostController extends Controller
     }
 
     public function show(){
+
         $role = auth()->user()->role_name;
         switch ($role) {
             case 'admin':
                 $posts = Post::all();
                 return view('post.post-show',['posts'=>$posts]);
+
             default:
                 $user = auth()->user()->id;
                 $posts = Post::where('status', 1)
@@ -60,6 +62,7 @@ class PostController extends Controller
     public function update(Request $request){
 
         $post = Post::find($request->id);
+        $post->status = $request->status;
         $post->title = $request->title;
         $post->description = $request->description;
         if($request->file('image')!=null)

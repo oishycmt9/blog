@@ -22,10 +22,10 @@
                         <thead>
                           <tr>
                             <th>ID</th>
-                            <th>user id</th>
-                            @if (auth()->user()->id=='admin' )
+                            @can('view-post-post-show')
+                            <th>User id</th>
                             <th>Status</th>
-                            @endif
+                            @endcan
                             <th>Title</th>
                             <th>Description</th>
                             <th>Image</th>
@@ -38,10 +38,10 @@
                             @foreach ($posts as $post)
                             <tr>
                                 <td>{{$n++}}</td>
+                                @can('view-post-post-show')
                                 <td>{{$post->user_id}}</td>
-                                @if (auth()->user()->role_name=='admin')
                                 <td>{{$post->status}}</td>
-                                @endif
+                                @endcan
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->description}}</td>
                                 <td>
@@ -49,7 +49,7 @@
                                 </td>
                                 <td>{{$post->category}}</td>
                                 <td>
-                                    <a href="{{route('posts.edit',['id'=>$post->id])}}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> </a>
+                                    <a href="{{route('posts.edit',['id'=>$post->id])}}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
                                     <a href="{{route('posts.destroy',['id'=>$post->id])}}" class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete this post?')"> <i class="fa fa-trash"></i> </a>
                                 </td>
                               </tr>

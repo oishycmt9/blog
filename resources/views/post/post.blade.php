@@ -1,7 +1,6 @@
 <x-guest-layout>
     <form method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data">
         @csrf
-        {{auth()->user()->role_name}}
 
         <!-- User ID -->
         <div>
@@ -38,11 +37,6 @@
                     <option value="Laptop">Laptop</option>
                     <option value="Computer">Computer</option>
             </select>
-
-           {{--  <x-text-input id="category" class="block mt-1 w-full"
-                            type="text"
-                            name="category"
-                            required autocomplete="category" /> --}}
 
             <x-input-error :messages="$errors->get('category')" class="mt-2" />
         </div>

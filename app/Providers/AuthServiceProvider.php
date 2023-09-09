@@ -21,9 +21,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Gate::define('view-post-post-show', function () {
-        //     return auth()->user()->role_name === 'admin';
-        // });
-        //
+        Gate::define('view-post-post-show', function () {
+            return auth()->user()->role_name === 'admin';
+        });
     }
 }

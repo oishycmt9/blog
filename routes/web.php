@@ -19,12 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts', [PostController::class, 'create'])->name('posts');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/view', [PostController::class, 'show'])->name('posts.show');
-Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
-Route::post('/posts/update', [PostController::class, 'update'])->name('posts.update');
-Route::get('/posts/destroy/{id}', [PostController::class, 'delete'])->name('posts.destroy');
+Route::get('/posts', [PostController::class, 'create'])->middleware(['auth'])->name('posts');
+Route::post('/posts', [PostController::class, 'store'])->middleware(['auth'])->name('posts.store');
+Route::get('/posts/view', [PostController::class, 'show'])->middleware(['auth','role:user'])->name('posts.show');
+Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->middleware(['auth','role:admin'])->name('posts.edit');
+Route::post('/posts/update', [PostController::class, 'update'])->middleware(['auth','role:admin'])->name('posts.update');
+Route::get('/posts/destroy/{id}', [PostController::class, 'delete'])->middleware(['auth','role:admin'])->name('posts.destroy');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -6,11 +6,8 @@ use App\Models\User;
 
 class PostPolicy
 {
-    /**
-     * Create a new policy instance.
-     */
-    public function __construct()
+    public function update(Post $post): bool
     {
-        //
+        return auth()->user()->id === $post->user_id;
     }
 }

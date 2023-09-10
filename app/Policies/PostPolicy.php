@@ -6,8 +6,21 @@ use App\Models\User;
 
 class PostPolicy
 {
-    public function update($post): bool
+    public function edit($user, $post): bool
     {
-        return auth()->user()->id === $post->user_id;
+        return $user['id'] == $post['user_id'];
+        return false;
+    }
+
+    public function update($user, $post): bool
+    {
+        return $user['id'] == $post['user_id'];
+        return false;
+    }
+
+    public function delete($user, $post): bool
+    {
+        return $user['id'] == $post['user_id'];
+        return false;
     }
 }

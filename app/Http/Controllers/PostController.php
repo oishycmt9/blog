@@ -55,6 +55,9 @@ class PostController extends Controller
 
     public function edit($id){
         $post = Post::find($id);
+        if(!$this->authorize('edit', $post)){
+            abort(403);
+        }
         $posts = Post::all();
         return view('post.edit-post',['post'=>$post,'posts'=>$posts]);
     }
@@ -86,6 +89,9 @@ class PostController extends Controller
 
     public function delete ($id){
         $post = Post::find($id);
+        if(!$this->authorize('delete', $post)){
+            abort(403);
+        }
         $post->delete();
         return redirect('/posts/view');
     }
